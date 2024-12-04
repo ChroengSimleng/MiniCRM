@@ -1,1 +1,85 @@
+/* Global Styling */
+body {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+              url('background1.jpg') no-repeat center/cover fixed;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Card Styling */
+.card {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+/* Form Styling */
+form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+  border-color: #0033cc;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 51, 204, 0.5);
+}
+
+/* Button Styling */
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #0033cc;
+}
+
+/* Icon Styling */
+box-icon {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+    padding: 15px;
+  }
+  .page-title {
+    font-size: 1.5rem;
+  }
+  input,
+  .btn-primary {
+    font-size: 0.9rem;
+  }
+}
 
