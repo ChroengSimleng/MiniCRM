@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"> <ion-icon name="bonfire-outline"></ion-icon> </span>
+                        <span class="title">CRM</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="dashboard-btn">
+                        <span class="icon"> <ion-icon name="clipboard-outline"></ion-icon> </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="customer-btn">
+                        <span class="icon"> <ion-icon name="people-outline"></ion-icon> </span>
+                        <span class="title">Customer</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"> <ion-icon name="chatbox-outline"></ion-icon> </span>
+                        <span class="title">Message</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"> <ion-icon name="settings-outline"></ion-icon> </span>
+                        <span class="title">Setting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html" onclick="return confirm('Are you sure you want to leave this page?')">
+                        <span class="icon"> <ion-icon name="log-out-outline"></ion-icon> </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main">
+            <!-- Dashboard Section -->
+            <div id="dashboard">
+                <div class="topbar">
+                    <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
+                </div>
+                <div class="cardBox">
+                    <div class="card">
+                        <div>
+                            <div class="numbers">1500</div>
+                            <div class="cardname">Daily Views</div>
+                        </div>
+                        <div class="iconbx"><ion-icon name="eye-outline"></ion-icon></div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">30</div>
+                            <div class="cardname">Sales</div>
+                        </div>
+                        <div class="iconbx"><ion-icon name="cart-outline"></ion-icon></div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">284</div>
+                            <div class="cardname">Comments</div>
+                        </div>
+                        <div class="iconbx"><ion-icon name="chatbubble-ellipses-outline"></ion-icon></div>
+                    </div>
+                    <div class="card">
+                        <div>
+                            <div class="numbers">5060$</div>
+                            <div class="cardname">Earning</div>
+                        </div>
+                        <div class="iconbx"><ion-icon name="cash-outline"></ion-icon></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Section -->
+            <div id="customer" class="hidden">
+                <h1>Customer Management</h1>
+
+                <!-- Add Customer Form -->
+                <div class="form-card">
+                    <h2>Add Customer</h2>
+                    <form id="customer-form">
+                        <label>
+                            First Name:
+                            <input type="text" id="firstname" required>
+                        </label>
+                        <label>
+                            Last Name:
+                            <input type="text" id="lastname" required>
+                        </label>
+                        <label>
+                            Email:
+                            <input type="email" id="email" required>
+                        </label>
+                        <label>
+                            Phone:
+                            <input type="text" id="phone" required>
+                        </label>
+                        <button type="submit">Add Customer</button>
+                    </form>
+                </div>
+
+                <!-- Customer Table -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customer-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
 
