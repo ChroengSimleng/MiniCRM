@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const customerBtn = document.getElementById("customer-btn");
     const customerForm = document.getElementById("customer-form");
     const customerTableBody = document.getElementById("customer-table-body");
+    const filterInputCustomer = document.getElementById("filterInputCustomer");
+    const filterDropdownCustomer = document.getElementById("filterDropdownCustomer");
 
     // Load customers from local storage
     let customers = JSON.parse(localStorage.getItem("customers")) || [];
@@ -56,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             customerTableBody.appendChild(row);
         });
+        applyFilter(); // Apply filter after updating the table
     }
 
     // Edit customer functionality
@@ -84,51 +87,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initial load of customers from local storage
     updateCustomerTable();
-});
- // Filter functionality for Customer
-    if (filterInputCustomer) {
-        filterInputCustomer.addEventListener("input", filterTable);
-    }
-
-    if (filterDropdownCustomer) {
-        filterDropdownCustomer.addEventListener("change", applyFilter);
-    }
 
     // Function to filter the table based on search input
-    function filterTable() {
-        const filter = filterInputCustomer.value.trim().toLowerCase();
-        const rows = document.querySelectorAll("#customer-table-body tr");
-
-        rows.forEach((row) => {
-            const name = row.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
-            if (name.includes(filter)) {
-                row.style.display = "";
-            } else {
-                row.style.display = "none";
-            }
-        });
-    }
+    filterInputCustomer.addEventListener("input", () => {
+        applyFilter();
+    });
 
     // Function to sort the table based on dropdown selection
-    function applyFilter() {
-        const option = filterDropdownCustomer.value;
-        const rows = Array.from(document.querySelectorAll("#customer-table-body tr"));
+    filterDropdownCustomer.addEventListener("change", () => {
+        applyFilter();
+    });
 
-        rows.sort((a, b) => {
-            const cellA = a.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
-            const cellB = b.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
-            return option === "asc" ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+    function applyFilter() {
+        const filterValue = filterInputCustomer.value.trim().toLowerCase();
+        const sortOrder = filterDropdownCustomer.value;
+        
+        let filteredCustomers = customers.filter(customer => {
+            return customer.firstname.toLowerCase().includes(filterValue) || 
+                   customer.lastname.toLowerCase().includes(filterValue);
         });
 
-        const tbody = document.querySelector("#customer-table-body");
-        tbody.innerHTML = "";
-        rows.forEach((row) => tbody.appendChild(row));
+        if (sortOrder === "asc") {
+            filteredCustomers.sort((a, b) => a.firstname.localeCompare(b.firstname));
+        } else if (sortOrder === "desc") {
+            filteredCustomers.sort((a, b) => b.firstname.localeCompare(a.firstname));
+        }
+
+        // Update the table with filtered and sorted customers
+        customerTableBody.innerHTML = ""; // Clear existing rows
+        filteredCustomers.forEach((customer, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${customer.firstname}</td>
+                <td>${customer.lastname}</td>
+                <td>${customer.email}</td>
+                <td>${customer.phone}</td>
+                <td>
+                    <button onclick="editCustomer(${index})">Edit</button>
+                    <button onclick="deleteCustomer(${index})">Delete</button>
+                </td>
+            `;
+            customerTableBody.appendChild(row);
+        });
     }
 
-        //graph
+    // Graph code (unchanged)
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
-        type: 'line', // You can change this to 'bar', 'pie', etc.
+        type: 'bar', // You can change this to 'bar', 'pie', 'line', etc.
         data: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'], // X-axis labels
             datasets: [{
@@ -148,4 +154,3 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-
