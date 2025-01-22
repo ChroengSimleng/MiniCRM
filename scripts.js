@@ -85,3 +85,50 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initial load of customers from local storage
     updateCustomerTable();
 });
+// Function to filter the table based on search input
+function filterTable() {
+  const input = document.getElementById("filterInput");
+  const filter = input.value.trim().toLowerCase();
+  const rows = document.querySelectorAll(".briefs-table tbody tr");
+
+  rows.forEach((row) => {
+    const name = row.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
+    if (name.includes(filter)) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+}
+
+// Function to sort the table based on dropdown selection
+function applyFilter() {
+  const dropdown = document.getElementById("filterDropdown");
+  const option = dropdown.value;
+  const rows = Array.from(document.querySelectorAll(".briefs-table tbody tr"));
+
+  rows.sort((a, b) => {
+    const cellA = a.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
+    const cellB = b.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
+    return option === "asc" ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+  });
+
+  const tbody = document.querySelector(".briefs-table tbody");
+  tbody.innerHTML = "";
+  rows.forEach((row) => tbody.appendChild(row));
+}
+
+// Add event listeners for search and filter
+document.addEventListener("DOMContentLoaded", () => {
+  const filterInput = document.getElementById("filterInput");
+  const filterDropdown = document.getElementById("filterDropdown");
+
+  if (filterInput) {
+    filterInput.addEventListener("input", filterTable);
+  }
+
+  if (filterDropdown) {
+    filterDropdown.addEventListener("change", applyFilter);
+  }
+});
+
