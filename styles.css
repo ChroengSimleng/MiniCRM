@@ -113,6 +113,31 @@
     pointer-events: none;
  }
  /*====main====*/
+ /* Centering and enlarging the filter container */
+.filter-container {
+    margin: 20px auto; /* Center the container */
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    gap: 20px; /* Space between elements */
+    max-width: 600px; /* Optional: limit the width */
+}
+
+/* Styling for the search input */
+#filterInputCustomer {
+    padding: 15px; /* Increase padding for larger size */
+    width: 300px; /* Set a fixed width */
+    border: 2px solid #ccc; /* Thicker border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+
+/* Styling for the filter dropdown */
+#filterDropdownCustomer {
+    padding: 15px; /* Increase padding for larger size */
+    border: 2px solid #ccc; /* Thicker border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
  .main{
     position: absolute;
     width: calc(100% - 300px);
