@@ -85,52 +85,46 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initial load of customers from local storage
     updateCustomerTable();
 });
-// Function to filter the table based on search input
-function filterTable() {
-  const input = document.getElementById("filterInput");
-  const filter = input.value.trim().toLowerCase();
-  const rows = document.querySelectorAll(".briefs-table tbody tr");
-
-  rows.forEach((row) => {
-    const name = row.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
-    if (name.includes(filter)) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
+ // Filter functionality for Customer
+    if (filterInputCustomer) {
+        filterInputCustomer.addEventListener("input", filterTable);
     }
-  });
-}
 
-// Function to sort the table based on dropdown selection
-function applyFilter() {
-  const dropdown = document.getElementById("filterDropdown");
-  const option = dropdown.value;
-  const rows = Array.from(document.querySelectorAll(".briefs-table tbody tr"));
+    if (filterDropdownCustomer) {
+        filterDropdownCustomer.addEventListener("change", applyFilter);
+    }
 
-  rows.sort((a, b) => {
-    const cellA = a.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
-    const cellB = b.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
-    return option === "asc" ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
-  });
+    // Function to filter the table based on search input
+    function filterTable() {
+        const filter = filterInputCustomer.value.trim().toLowerCase();
+        const rows = document.querySelectorAll("#customer-table-body tr");
 
-  const tbody = document.querySelector(".briefs-table tbody");
-  tbody.innerHTML = "";
-  rows.forEach((row) => tbody.appendChild(row));
-}
+        rows.forEach((row) => {
+            const name = row.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
+            if (name.includes(filter)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
 
-// Add event listeners for search and filter
-document.addEventListener("DOMContentLoaded", () => {
-  const filterInput = document.getElementById("filterInput");
-  const filterDropdown = document.getElementById("filterDropdown");
+    // Function to sort the table based on dropdown selection
+    function applyFilter() {
+        const option = filterDropdownCustomer.value;
+        const rows = Array.from(document.querySelectorAll("#customer-table-body tr"));
 
-  if (filterInput) {
-    filterInput.addEventListener("input", filterTable);
-  }
+        rows.sort((a, b) => {
+            const cellA = a.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
+            const cellB = b.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
+            return option === "asc" ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+        });
 
-  if (filterDropdown) {
-    filterDropdown.addEventListener("change", applyFilter);
-  }
-});
+        const tbody = document.querySelector("#customer-table-body");
+        tbody.innerHTML = "";
+        rows.forEach((row) => tbody.appendChild(row));
+    }
+
         //graph
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
