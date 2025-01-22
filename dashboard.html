@@ -91,16 +91,8 @@
                         <canvas id="myChart" width="400" height="200"></canvas>
                     </div>
             </div>
-            <!-- Search and Filter Section -->
-            <div class="filter-container">
-              <input type="text" id="filterInput" placeholder="Search by name...">
-              <select id="filterDropdown">
-                <option value="">Select filter...</option>
-                <option value="asc">Sort A-Z</option>
-                <option value="desc">Sort Z-A</option>
-              </select>
-            </div>
-                <!-- Customer Section -->
+           
+            <!-- Customer Section -->
             <div id="customer" class="hidden">
                 <br>
                 <h1 style="text-align:center;">Customer Management</h1>
@@ -127,6 +119,16 @@
                         </label>
                         <button type="submit">Add Customer</button>
                     </form>
+                </div>
+
+                <!-- Filter Section for Customer -->
+                <div class="filter-container">
+                    <input type="text" id="filterInputCustomer" placeholder="Search by name...">
+                    <select id="filterDropdownCustomer">
+                        <option value="">Select filter...</option>
+                        <option value="asc">Sort A-Z</option>
+                        <option value="desc">Sort Z-A</option>
+                    </select>
                 </div>
 
                 <!-- Customer Table -->
