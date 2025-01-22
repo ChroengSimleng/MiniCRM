@@ -130,6 +130,38 @@ document.addEventListener("DOMContentLoaded", () => {
   if (filterDropdown) {
     filterDropdown.addEventListener("change", applyFilter);
   }
+    
+  // Function to filter the table based on search input
+  function filterTable() {
+      const filter = filterInputCustomer.value.trim().toLowerCase();
+      const rows = document.querySelectorAll("#customer-table-body tr");
+
+      rows.forEach((row) => {
+          const name = row.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
+          if (name.includes(filter)) {
+              row.style.display = "";
+          } else {
+              row.style.display = "none";
+          }
+      });
+  }
+
+  // Function to sort the table based on dropdown selection
+  function applyFilter() {
+      const option = filterDropdownCustomer.value;
+      const rows = Array.from(document.querySelectorAll("#customer-table-body tr"));
+
+      rows.sort((a, b) => {
+          const cellA = a.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
+          const cellB = b.querySelector("td:nth-child(1)").textContent.trim().toLowerCase(); // First Name column
+          return option === "asc" ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+      });
+
+      const tbody = document.querySelector("#customer-table-body");
+      tbody.innerHTML = "";
+      rows.forEach((row) => tbody.appendChild(row));
+  }
+});
         //graph
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
