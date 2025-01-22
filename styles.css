@@ -307,4 +307,23 @@ table button {
 table button:hover {
    background-color: #1a1464;
 }
+/* Filter Container Styling */
+.filter-container {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+#filterInput {
+  padding: 8px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#filterDropdown {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
